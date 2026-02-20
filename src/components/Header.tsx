@@ -43,7 +43,7 @@ export default function Header(){
                 </button>
 
                 {isOpen && (
-                    <div className="max-md:block hidden absolute top-[70px] left-0 w-full bg-white shadow-lg">
+                    <div className="max-md:block hidden absolute top-[70px] left-0 w-full bg-white shadow-lg z-50 animate-slideDown">
                         <nav className="flex flex-col p-4 gap-4 items-center">
                             <a href='#' className="text-[#3A5F56] py-2 ">Presets</a>
                             <a href='#' className="text-[#3A5F56] py-2">Prints</a>
