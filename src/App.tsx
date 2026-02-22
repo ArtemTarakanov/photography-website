@@ -1,6 +1,7 @@
 import './App.css'
 import Header from "./components/Header.tsx";
 import Hero from "./components/Hero";
+import Services from "./components/Services.tsx";
 
 
 
@@ -9,6 +10,7 @@ function App() {
     <>
         <Header/>
         <Hero/>
+        <Services/>
     </>
   )
 }
