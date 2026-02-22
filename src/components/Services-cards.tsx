@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const Cards = [
     {
         icon: "/images/icon-1.svg",
@@ -43,18 +45,71 @@ const Cards = [
 ]
 
 export default function ServicesCards(){
-    return(
-        <section className="flex justify-center px-[120px] pt-[40px] max-md:px-[30px]">
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-            <div className="grid grid-cols-3 gap-4 max-w-[1200px] max-md:grid max-md:grid-cols-1">
+    const nextSlide = () => {
+        setCurrentIndex((prev) => (prev + 1) % Cards.length);
+    };
+
+    const prevSlide = () => {
+        setCurrentIndex((prev) => (prev - 1 + Cards.length) % Cards.length);
+    };
+
+    return(
+        <section className="flex justify-center px-[120px] pt-[40px] max-md:px-4">
+
+            {/*ноуты*/}
+            <div className="grid grid-cols-3 gap-4 max-w-[1200px] max-md:hidden">
                 {Cards.map((service, index)=>(
                     <div key={index} className="rounded-2xl bg-[#F4F3F0] shadow-md px-[30px] py-[30px]">
                         <img src={service.icon} alt={service.title} />
-                        <h3 className="font-['Source-Serif-4'] font-normal text-[24px] leading-[28.8px] text-[#3A5F56] mt-[9px] mb-[6px] max-md:text-[22px]">{service.title}</h3>
-                        <p className="font-['Roboto'] font-normal text-base leading-[22.4px] text-[#292C32] max-md:text-[14px]">{service.description}</p>
+                        <h3>{service.title}</h3>
+                        <p>{service.description}</p>
                     </div>
                 ))}
             </div>
+
+            {/*кобилка*/}
+            <div className="hidden max-md:block w-full relative">
+
+                {/*карточка*/}
+                <div className="rounded-2xl bg-[#F4F3F0] shadow-md px-[30px] py-[30px] flex-col justify-center">
+                    <img src={Cards[currentIndex].icon} alt={Cards[currentIndex].title} />
+                    <h3 className="font-['Source-Serif-4'] text-[24px] text-[#3A5F56] mt-[9px] mb-[6px]">
+                        {Cards[currentIndex].title}
+                    </h3>
+                    <p className="font-['Roboto'] text-base text-[#292C32]">
+                        {Cards[currentIndex].description}
+                    </p>
+                </div>
+
+                <div className="flex justify-between mt-4">
+                    <button
+                        onClick={prevSlide}
+                        className="bg-[#3A5F56] text-white w-10 h-10 rounded-full flex items-center justify-center"
+                    >
+                        ←
+                    </button>
+
+                    <div className="flex gap-2 items-center">
+                        {Cards.map((_, index) => (
+                            <div
+                                key={index}
+                                className={`w-2 h-2 rounded-full ${index === currentIndex ? 'bg-[#3A5F56]' : 'bg-gray-300'}`}
+                            />
+                        ))}
+                    </div>
+
+                    <button
+                        onClick={nextSlide}
+                        className="bg-[#3A5F56] text-white w-10 h-10 rounded-full flex items-center justify-center"
+                    >
+                        →
+                    </button>
+                </div>
+
+            </div>
+
         </section>
     );
 }
