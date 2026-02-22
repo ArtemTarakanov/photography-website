@@ -5,6 +5,7 @@ import Services from "./components/Services.tsx";
 import ServicesCards from "./components/Services-cards.tsx";
 import Store from "./components/Store.tsx";
 import Contacts from "./components/Contacts.tsx";
+import Footer from "./components/Footer.tsx";
 
 
 
@@ -17,6 +18,7 @@ function App() {
         <ServicesCards/>
         <Store/>
         <Contacts/>
+        <Footer/>
     </>
   )
 }
